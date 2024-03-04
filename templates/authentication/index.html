@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login Portal</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f0f0f0;
+    }
+
+    .header {
+      background-color: #333;
+      color: #fff;
+      padding: 20px;
+      text-align: center;
+    }
+
+    .header img {
+      max-width: 200px;
+    }
+
+    .options {
+      text-align: center;
+      margin-top: 50px;
+    }
+
+    .options button {
+      padding: 15px 30px;
+      font-size: 18px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      margin: 10px;
+      transition: background-color 0.3s;
+    }
+
+    .options button:hover {
+      background-color: #555;
+    }
+
+    .alert {
+      padding: 15px;
+      margin-bottom: 20px;
+      border: 1px solid transparent;
+      border-radius: 4px;
+    }
+    
+    .alert-danger {
+      color: #721c24;
+      background-color: #f8d7da;
+      border-color: #f5c6cb;
+    }
+    
+    .alert-success {
+      color: #155724;
+      background-color: #d4edda;
+      border-color: #c3e6cb;
+    }
+    
+    .alert-info {
+      color: #0c5460;
+      background-color: #d1ecf1;
+      border-color: #bee5eb;
+    }
+    
+    .alert-warning {
+      color: #856404;
+      background-color: #fff3cd;
+      border-color: #ffeeba;
+    }
+    
+    .alert-dismissible {
+      padding-right: 2.5rem;
+    }
+    
+    .alert-dismissible .close {
+      position: relative;
+      top: -2px;
+      right: -21px;
+      padding: 0.75rem 1.25rem;
+      color: inherit;
+    }
+    
+    .alert-dismissible .close:hover {
+      color: inherit;
+      text-decoration: none;
+      opacity: 0.6;
+    }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <img alt="Spam Message Detection">
+  </div>
+  
+
+
+  {% for message in messages %}  
+  <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+      <strong> Message: </strong>{{ message }}
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close"></button>
+      <span aria-hidden="true">&times;</span>
+  </div>
+  {% endfor %}
+
+  <div class="options">
+
+    {%if user.is_authenticated %}
+    <h3>Hello {{fname}}</h3>
+    <h4> Login Successful </h4>
+
+    <button type="submit"><a href="/signout"> SignOut</a></button>
+   
+    {% else %}
+    <a href="/signin"><button type="submit" >Login</a></button>
+    <button type="submit"><a href="/signup">SignUp</a></button>
+    {% endif %}
+
+  </div>
+</body>
+</html>
